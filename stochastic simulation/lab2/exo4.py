@@ -32,22 +32,25 @@ def ff(x,samples,band):
         for j in range(0,n):
             res[i] += (k_sig(x[i]-samples[j],band))/n;
     return res
+
 def sig(samples):
     n = len(samples);
     var = np.std(samples);
-    return var*n**(-1/5)
+    return var*n**(-1/5.)
 
 c, k = 2,4;
 M = 10;
 band,size = 1,100;
 
-sizes = [100, 1000, 1000];
+sizes = [100, 500];
 for sz in sizes:
     xx = scipy.stats.burr12.rvs(c, k,0, 1, sz);
     x = np.linspace(-M,M,sz);
     band = sig(xx);
-    plt.plot(x,ff(x,xx,band),label = sz)
+    plt.plot(x,ff(x,xx,band),label = sz)    
     
-plt.plot(x,psi(x),label = "Normal distribution")
+rv = scipy.stats.burr12(c, k);
+x = np.linspace(-M,M,size);
+plt.plot(x, rv.pdf(x), 'k-', lw=2, label='Theoretical Blurr')
 plt.legend()
 plt.show()

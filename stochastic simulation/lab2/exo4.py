@@ -48,6 +48,6 @@ for sz in sizes:
     band = sig(xx);
     plt.plot(x,ff(x,xx,band),label = sz)
     
-plt.plot(x,psi(x),label = "true")
+plt.plot(x,psi(x),label = "Normal distribution")
 plt.legend()
 plt.show()

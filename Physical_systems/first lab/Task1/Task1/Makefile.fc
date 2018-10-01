@@ -1,0 +1,21 @@
+# directory path:
+PWD     =       $(shell pwd) 
+LIBS	=	
+FC	=	gfortran
+FFLAGS	= 	-ffree-form -O2
+EXES    = harmosc_euler
+# harmosc_pc harmosc_verlet
+
+all: $(EXES)
+
+harmosc_euler: harmosc_euler.f
+	$(FC) -o harmosc_euler $(FFLAGS) $(LDFLAGS) harmosc_euler.f $(LIBS)
+
+harmosc_pc: harmosc_pc.f
+	$(FC) -o harmosc_pc $(FFLAGS) $(LDFLAGS) harmosc_pc.f $(LIBS)
+
+harmosc_verlet: harmosc_verlet.f
+	$(FC) -o harmosc_verlet $(FFLAGS) $(LDFLAGS) harmosc_verlet.f $(LIBS)
+
+clean:
+	rm -f *.o *.a $(EXES); 
